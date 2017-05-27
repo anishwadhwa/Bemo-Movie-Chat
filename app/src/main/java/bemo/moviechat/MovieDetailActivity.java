@@ -3,6 +3,7 @@ package bemo.moviechat;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +42,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView tvDetailOverview;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.toolbar_layout)
+    CollapsingToolbarLayout toolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class MovieDetailActivity extends AppCompatActivity {
             ivMovieDetailImage.setTransitionName(imageTransitionName);
         }
 
-        toolbar.setTitle(movie.getTitle());
+//        toolbar.setTitle(movie.getTitle());
+        toolbarLayout.setTitle(movie.getTitle());
 
         Picasso.with(this)
                 .load("http://image.tmdb.org/t/p/w300" + movie.getPoster_path())
