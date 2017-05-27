@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "59289563367",
+    "firebase_url": "https://moviechat-1364f.firebaseio.com",
+    "project_id": "moviechat-1364f",
+    "storage_bucket": "moviechat-1364f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59289563367:android:00fbee18ddb61d88",
+        "android_client_info": {
+          "package_name": "bemo.moviechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59289563367-74d5ml7hpqcidrhjppusapegn9o8rdcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bemo.moviechat",
+            "certificate_hash": "25740802d3c9751e755e38e2364c776c205c3fad"
+          }
+        },
+        {
+          "client_id": "59289563367-5cnpksbbl3sf5h5md4884pjlh2358k71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxVD1COUGi5KJEiR9dneeDxp-Od4LQsMA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59289563367-5cnpksbbl3sf5h5md4884pjlh2358k71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

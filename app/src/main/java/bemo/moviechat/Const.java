@@ -5,5 +5,7 @@ package bemo.moviechat;
  */
 
 public class Const {
-    public static final String TAG = "trytobemo";
+    public static final String TAG = "tryBemo";
+    public static final String API_KEY = "a8f6bcefa7f19b091471db17e335f98f";
+    public static final String GET_MOVIES = "get_movies";
 }
