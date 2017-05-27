@@ -2,6 +2,7 @@ package bemo.moviechat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -24,10 +26,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     Context context;
     ArrayList<Movie> moviesList;
+    MovieItemClickListener movieItemClickListener;
 
-    public MovieAdapter(Context context, ArrayList<Movie> moviesList){
+    public MovieAdapter(Context context, ArrayList<Movie> moviesList, MovieItemClickListener movieItemClickListener){
         this.context = context;
         this.moviesList = moviesList;
+        this.movieItemClickListener = movieItemClickListener;
     }
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,13 +40,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
-        holder.tvMovieTitle.setText(moviesList.get(position).getTitle());
-        holder.tvUserVoteAvg.setText(moviesList.get(position).getVote_average());
-//        holder.ivMovieThumb.setImageURI("http://image.tmdb.org/t/p/w92" + moviesList.get(position).getPoster_path());    //http://image.tmdb.org/t/p/
-        Glide.with(context)
-                .load("http://image.tmdb.org/t/p/w154" + moviesList.get(position).getPoster_path())
+    public void onBindViewHolder(final MovieViewHolder holder, int position) {
+
+        final Movie movie = moviesList.get(position);
+        holder.tvMovieTitle.setText(movie.getTitle());
+        holder.tvUserVoteAvg.setText(movie.getVote_average());
+        holder.tvLanguage.setText("English");
+        holder.tvOverview.setText(movie.getOverview());
+       /* Glide.with(holder.itemView.getContext())
+                .load("http://image.tmdb.org/t/p/w154" + movie.getPoster_path())
+                .into(holder.ivMovieThumb);*/
+
+        Picasso.with(holder.itemView.getContext())
+                .load("http://image.tmdb.org/t/p/w154" + movie.getPoster_path())
                 .into(holder.ivMovieThumb);
+
+        ViewCompat.setTransitionName(holder.ivMovieThumb, movie.getId());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                movieItemClickListener.onMovieClick(holder.getAdapterPosition(), movie, holder.ivMovieThumb);
+            }
+        });
     }
 
     @Override
@@ -55,6 +75,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         TextView tvUserVoteAvg;
         ImageView ivMovieThumb;
         RelativeLayout rlFullLayout;
+        TextView tvLanguage;
+        TextView tvOverview;
 
         MovieViewHolder(View itemView){
             super(itemView);
@@ -62,14 +84,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             tvUserVoteAvg = (TextView)itemView.findViewById(R.id.tv_user_vote_avg);
             ivMovieThumb = (ImageView)itemView.findViewById(R.id.img_movie_thumb);
             rlFullLayout = (RelativeLayout)itemView.findViewById(R.id.rl_movie_full);
-
-            rlFullLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context,DummyChatActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+            tvLanguage = (TextView) itemView.findViewById(R.id.tv_language);
+            tvOverview = (TextView) itemView.findViewById(R.id.tv_overview);
 
         }
     }

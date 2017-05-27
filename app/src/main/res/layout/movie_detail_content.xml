@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MovieDetailActivity"
+        tools:showIn="@layout/movie_detail_activity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_movie_detail_image"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+        <RelativeLayout
+            android:id="@+id/rl_movie_detail_user_vote_avg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_detail_user_vote_avg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="4.7"
+                android:background="@drawable/rating_background"/>
+            <TextView
+                android:id="@+id/tv_detail_user_vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_below="@+id/tv_detail_user_vote_avg"
+                android:layout_margin="4dp"
+                />
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_detail_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:layout_below="@id/iv_movie_detail_image"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>

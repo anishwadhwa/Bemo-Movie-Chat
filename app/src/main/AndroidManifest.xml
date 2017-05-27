@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MovieDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".DummyChatActivity"
             android:screenOrientation="portrait"/>
     </application>

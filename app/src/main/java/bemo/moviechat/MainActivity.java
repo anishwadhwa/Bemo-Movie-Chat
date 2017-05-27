@@ -1,11 +1,15 @@
 package bemo.moviechat;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieItemClickListener {
 
     @BindView(R.id.rv_movies)
     RecyclerView rvMovies;
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Movie> moviesList;
     @BindView(R.id.main_progress)
     ProgressBar mainProgress;
+
+    public static final String MOVIE_ITEM = "movie_item";
+    public static final String MOVIE_TRANSITION_NAME = "movie_transition_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             rvMovies.setVisibility(View.VISIBLE);
             mainProgress.setVisibility(View.GONE);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            MovieAdapter adapter = new MovieAdapter(MainActivity.this, moviesList);
+            MovieAdapter adapter = new MovieAdapter(MainActivity.this, moviesList,this);
             rvMovies.setLayoutManager(layoutManager);
             rvMovies.setAdapter(adapter);
             rvMovies.setNestedScrollingEnabled(false);
@@ -128,4 +135,17 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    public void onMovieClick(int position, Movie movie, ImageView sharedImageView) {
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra(MOVIE_ITEM, movie);
+        intent.putExtra(MOVIE_TRANSITION_NAME, ViewCompat.getTransitionName(sharedImageView));
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                sharedImageView,
+                ViewCompat.getTransitionName(sharedImageView));
+
+        startActivity(intent, options.toBundle());
+    }
 }
